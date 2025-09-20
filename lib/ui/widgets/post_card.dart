@@ -8,7 +8,7 @@ class PostCard extends StatelessWidget {
   final VoidCallback? onTap;
 
   static const _radius = 16.0;
-  static const _cardHight = 96.0;
+  static const _cardHight = 116.0;
   static const _kPad12 = 12.0;
 
   @override
@@ -39,7 +39,6 @@ class PostCard extends StatelessWidget {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: theme.textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.w700,
                           color: theme.colorScheme.onSecondaryContainer,
                         ),
                       ),

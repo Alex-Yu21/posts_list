@@ -13,6 +13,7 @@ class PostsListView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final postsAsync = ref.watch(postsListProvider);
+    final theme = Theme.of(context);
 
     return SafeArea(
       child: Scaffold(
@@ -22,7 +23,7 @@ class PostsListView extends ConsumerWidget {
             ElevatedButton(onPressed: () {}, child: Icon(Icons.sunny)),
             SizedBox(width: _kPad24),
           ],
-          title: Text('Feed'),
+          title: Text('Feed', style: theme.textTheme.titleMedium),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: _kPad24),
@@ -33,6 +34,7 @@ class PostsListView extends ConsumerWidget {
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: 'Search by title',
+                    hintStyle: theme.textTheme.bodyLarge,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(32),
                     ),

@@ -1,3 +1,4 @@
+import 'package:characters/characters.dart';
 import 'package:flutter/foundation.dart';
 import 'package:posts_list/domain/entities/post_entity.dart';
 
@@ -15,25 +16,41 @@ class PostDto {
     required this.body,
   });
 
-  factory PostDto.fromJson(Map<String, dynamic> json) => PostDto(
-    id: json['id'] as int,
-    userId: json['userId'] as int,
-    title: (json['title'] as String).trim(),
-    body: (json['body'] as String).trim(),
+  factory PostDto.fromJson(Map<String, dynamic> j) => PostDto(
+    id: j['id'] as int,
+    userId: j['userId'] as int,
+    title: (j['title'] as String).trim(),
+    body: (j['body'] as String).trim(),
   );
 
-  Post toDomain({int shortMaxLen = 120}) => Post(
-    id: id,
-    title: title,
-    shortDescription: _makeShort(body, shortMaxLen),
-    fullDescription: body,
-  );
+  Post toDomain({int shortMaxLen = 120}) {
+    final normTitle = _sentenceCase(title);
+    final normFull = _sentenceCase(body);
+    final normShort = _sentenceCase(_makeShort(body, shortMaxLen));
+    return Post(
+      id: id,
+      title: normTitle,
+      shortDescription: normShort,
+      fullDescription: normFull,
+    );
+  }
 
   static String _makeShort(String text, int maxLen) {
-    final firstLine = text.replaceAll('\r\n', '\n').split('\n').first.trim();
-    if (firstLine.length <= maxLen) return firstLine;
-    final clipped = firstLine.substring(0, maxLen);
-    final safe = clipped.replaceFirst(RegExp(r'\s+\S*$'), '');
-    return '${(safe.isEmpty ? clipped : safe).trimRight()}…';
+    final t = text.trim();
+    if (t.isEmpty) return '';
+    final first = t.replaceAll('\r\n', '\n').split('\n').first.trim();
+    if (first.length <= maxLen) return first;
+    final cut = first.substring(0, maxLen);
+    final safe = cut.replaceFirst(RegExp(r'\s+\S*$'), '');
+    return '${(safe.isEmpty ? cut : safe).trimRight()}…';
+  }
+
+  static String _sentenceCase(String input) {
+    final t = input.trim();
+    if (t.isEmpty) return t;
+    final lower = t.toLowerCase();
+    final first = lower.characters.first.toUpperCase();
+    final rest = lower.characters.skip(1).toString();
+    return '$first$rest';
   }
 }

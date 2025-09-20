@@ -17,6 +17,20 @@ void main() {
       expect(dto.body, 'ullam et saepe reiciendis\nvoluptatem');
     });
 
+    test('should apply sentence case to title, full and short in toDomain', () {
+      final dto = PostDto(
+        userId: 1,
+        id: 10,
+        title: 'hELLo',
+        body: 'woRLD line one\nsecond',
+      );
+      final post = dto.toDomain(shortMaxLen: 50);
+
+      expect(post.title, 'Hello');
+      expect(post.fullDescription, 'World line one\nsecond');
+      expect(post.shortDescription, 'World line one');
+    });
+
     test(
       'should take first line for shortDescription when body has newlines',
       () {
@@ -27,11 +41,11 @@ void main() {
           body: 'first line\nsecond line',
         );
         final post = dto.toDomain(shortMaxLen: 120);
-        expect(post.shortDescription, 'first line');
+        expect(post.shortDescription, 'First line');
       },
     );
 
-    test('should handle CRLF line breaks', () {
+    test('should handle Carriage Return + Line Feed line breaks', () {
       final dto = PostDto(
         userId: 1,
         id: 2,
@@ -39,7 +53,7 @@ void main() {
         body: 'first\r\nsecond',
       );
       final post = dto.toDomain(shortMaxLen: 120);
-      expect(post.shortDescription, 'first');
+      expect(post.shortDescription, 'First');
     });
 
     test('should clip at word boundary and append ellipsis when too long', () {
@@ -50,7 +64,7 @@ void main() {
         body: 'this is a very long line with multiple words',
       );
       final post = dto.toDomain(shortMaxLen: 20);
-      expect(post.shortDescription, 'this is a very long…');
+      expect(post.shortDescription, 'This is a very long…');
     });
 
     test('should hard cut long single word and append ellipsis', () {
@@ -61,7 +75,7 @@ void main() {
         body: 'SuperMegaUltraLongWordWithoutSpaces',
       );
       final post = dto.toDomain(shortMaxLen: 10);
-      expect(post.shortDescription, 'SuperMegaU…');
+      expect(post.shortDescription, 'Supermegau…');
     });
 
     test('should return empty shortDescription for empty body', () {

@@ -20,6 +20,7 @@ class PostsListView extends ConsumerWidget {
         appBar: AppBar(
           centerTitle: true,
           actions: [
+            // TODO: theme button
             ElevatedButton(onPressed: () {}, child: Icon(Icons.sunny)),
             SizedBox(width: _kPad24),
           ],
@@ -32,6 +33,7 @@ class PostsListView extends ConsumerWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: _kPad12),
                 child: TextField(
+                  // TODO: separete wodjet + debaunce
                   decoration: InputDecoration(
                     hintText: 'Search by title',
                     hintStyle: theme.textTheme.bodyLarge,
@@ -71,6 +73,7 @@ class PostsListView extends ConsumerWidget {
                                 padding: const EdgeInsets.symmetric(
                                   vertical: _kPad12,
                                 ),
+                                // TODO: hero animation
                                 child: PostCard(
                                   post: p,
                                   onTap: () => Navigator.push<void>(

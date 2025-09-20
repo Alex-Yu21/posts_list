@@ -32,6 +32,7 @@ class PostDetailsView extends ConsumerWidget {
             horizontal: _kPad24,
             vertical: _kPad12,
           ),
+          // TODO: hero animation
           child: Material(
             color: theme.colorScheme.secondaryContainer,
             elevation: 1,

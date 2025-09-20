@@ -24,8 +24,8 @@ class PostDto {
   );
 
   Post toDomain({int shortMaxLen = 120}) {
-    final normTitle = _sentenceCase(title);
-    final normFull = _sentenceCase(body);
+    final normTitle = _ensurePeriod(_sentenceCase(title));
+    final normFull = _ensurePeriod(_sentenceCase(body));
     final normShort = _sentenceCase(_makeShort(body, shortMaxLen));
     return Post(
       id: id,
@@ -52,5 +52,12 @@ class PostDto {
     final first = lower.characters.first.toUpperCase();
     final rest = lower.characters.skip(1).toString();
     return '$first$rest';
+  }
+
+  static String _ensurePeriod(String input) {
+    final t = input.trimRight();
+    if (t.isEmpty) return t;
+    final endsWithPunct = RegExp(r'[.!?…]$').hasMatch(t);
+    return endsWithPunct ? t : '$t.';
   }
 }

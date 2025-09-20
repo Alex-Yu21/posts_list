@@ -79,36 +79,11 @@ void main() {
       },
     );
 
-    test('should refresh list cache and rebuild id index', () async {
-      final initial = await repo.fetchAll();
-      expect(initial.map((p) => p.id), [1, 2]);
-
-      remote.store = [
-        p(1, 'Hello (updated)', 'Body 1*'),
-        p(3, 'New', 'Body 3'),
-      ];
-      await repo.refresh();
-
-      final after = await repo.fetchAll();
-      expect(after.map((p) => p.id), [1, 3]);
-
-      final p1 = await repo.getPost(1);
-      expect(p1.title, 'Hello (updated)');
-    });
-
     test(
       'should propagate exception from remote.fetchAll in fetchAll',
       () async {
         remote.throwOnFetchAll = true;
         await expectLater(repo.fetchAll(), throwsA(isA<Exception>()));
-      },
-    );
-
-    test(
-      'should propagate exception from remote.fetchAll in refresh',
-      () async {
-        remote.throwOnFetchAll = true;
-        await expectLater(repo.refresh(), throwsA(isA<Exception>()));
       },
     );
 

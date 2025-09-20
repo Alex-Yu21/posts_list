@@ -29,11 +29,4 @@ class PostsRepoImpl implements PostsRepo {
     (_postByIdCache ??= {})[id] = remotePost;
     return remotePost;
   }
-
-  @override
-  Future<void> refresh() async {
-    final fetched = await remote.fetchAll();
-    _postsCache = List.unmodifiable(fetched);
-    _postByIdCache = {for (final p in fetched) p.id: p};
-  }
 }

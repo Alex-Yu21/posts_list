@@ -4,6 +4,4 @@ abstract class PostsRepo {
   Future<List<Post>> fetchAll();
 
   Future<Post> getPost(int id);
-
-  Future<void> refresh();
 }

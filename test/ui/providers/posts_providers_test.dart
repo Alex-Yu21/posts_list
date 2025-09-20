@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:posts_list/app/di/providers.dart';
 import 'package:posts_list/domain/entities/post_entity.dart';
 import 'package:posts_list/domain/repositories/posts_repo.dart';
-import 'package:posts_list/ui/views/providers/posts_providers.dart';
+import 'package:posts_list/ui/providers/posts_providers.dart';
 
 class FakePostsRepo implements PostsRepo {
   FakePostsRepo(this._list);

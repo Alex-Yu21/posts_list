@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:posts_list/ui/views/providers/posts_providers.dart';
+import 'package:posts_list/ui/providers/posts_providers.dart';
 
 class PostDetailsView extends ConsumerWidget {
   final int id;

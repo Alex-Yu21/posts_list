@@ -26,8 +26,8 @@ void main() {
       );
       final post = dto.toDomain(shortMaxLen: 50);
 
-      expect(post.title, 'Hello');
-      expect(post.fullDescription, 'World line one\nsecond');
+      expect(post.title, 'Hello.');
+      expect(post.fullDescription, 'World line one\nsecond.');
       expect(post.shortDescription, 'World line one');
     });
 
@@ -47,7 +47,7 @@ void main() {
 
     test('should handle Carriage Return + Line Feed line breaks', () {
       final dto = PostDto(
-        userId: 1,
+        userId: 2,
         id: 2,
         title: 'T',
         body: 'first\r\nsecond',
@@ -58,7 +58,7 @@ void main() {
 
     test('should clip at word boundary and append ellipsis when too long', () {
       final dto = PostDto(
-        userId: 1,
+        userId: 3,
         id: 3,
         title: 'T',
         body: 'this is a very long line with multiple words',
@@ -69,7 +69,7 @@ void main() {
 
     test('should hard cut long single word and append ellipsis', () {
       final dto = PostDto(
-        userId: 1,
+        userId: 4,
         id: 4,
         title: 'T',
         body: 'SuperMegaUltraLongWordWithoutSpaces',
@@ -79,7 +79,7 @@ void main() {
     });
 
     test('should return empty shortDescription for empty body', () {
-      final dto = PostDto(userId: 1, id: 5, title: 'T', body: '');
+      final dto = PostDto(userId: 5, id: 5, title: 'T', body: '');
       final post = dto.toDomain(shortMaxLen: 50);
       expect(post.shortDescription, '');
     });

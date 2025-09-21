@@ -85,8 +85,8 @@ void main() {
     await tester.pumpAndSettle();
 
     await tester.enterText(find.byType(TextField), 'alp');
-
-    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 400));
+    await tester.pumpAndSettle();
 
     expect(find.text('Alpha'), findsOneWidget);
     expect(find.text('Alphabet'), findsOneWidget);

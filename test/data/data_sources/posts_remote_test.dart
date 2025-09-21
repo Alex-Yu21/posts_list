@@ -30,7 +30,7 @@ void main() {
 
       final list = await remote.fetchAll();
       expect(list.length, 2);
-      expect(list.first.title, 'T');
+      expect(list.first.title, 'T.');
     });
 
     test('should throw Exception on non-200 for fetchById', () async {

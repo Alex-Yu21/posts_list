@@ -1,16 +1,22 @@
-# posts_list_test
+Posts List
 
-A new Flutter project.
+Демо-приложение на Flutter: список постов из публичного API, экран деталей, поиск, pull-to-refresh, светлая/тёмная темы.
 
-## Getting Started
+Стек
 
-This project is a starting point for a Flutter application.
+Flutter (Material 3), Riverpod, http. Шрифт: Copse.
 
-A few resources to get you started if this is your first Flutter project:
+Требования
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Flutter SDK с Dart ^3.8.1 (stable)
+Android SDK / (на macOS) Xcode + Cocoapods
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Запуск 
+
+git clone <https://github.com/Alex-Yu21/posts_list>
+cd posts_list
+flutter pub get
+# Android
+flutter run -d android
+# iOS (macOS)
+flutter run -d ios

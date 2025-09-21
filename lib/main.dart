@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:posts_list/ui/providers/theme_provider.dart';
 import 'package:posts_list/ui/views/posts_list_view.dart';
 
 void main() {
   runApp(const ProviderScope(child: App()));
 }
 
-class App extends StatelessWidget {
+class App extends ConsumerWidget {
   const App({super.key});
 
   static const _seed = Color.fromARGB(255, 111, 111, 158);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final mode = ref.watch(themeModeProvider);
+
     final lightScheme = ColorScheme.fromSeed(
       seedColor: _seed,
       brightness: Brightness.light,
@@ -49,7 +52,7 @@ class App extends StatelessWidget {
         fontFamily: 'Copse',
         textTheme: override(ThemeData.dark().textTheme),
       ),
-      themeMode: ThemeMode.system,
+      themeMode: mode,
       home: const PostsListView(),
     );
   }

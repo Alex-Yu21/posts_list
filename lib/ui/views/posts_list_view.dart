@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:posts_list/ui/providers/posts_providers.dart';
 import 'package:posts_list/ui/views/post_details.dart';
 import 'package:posts_list/ui/widgets/post_card.dart';
+import 'package:posts_list/ui/widgets/rheme_switch.dart';
 
 class PostsListView extends ConsumerWidget {
   const PostsListView({super.key});
@@ -20,8 +21,7 @@ class PostsListView extends ConsumerWidget {
         appBar: AppBar(
           centerTitle: true,
           actions: [
-            // TODO: theme button
-            ElevatedButton(onPressed: () {}, child: Icon(Icons.sunny)),
+            ThemeSwitch(),
             SizedBox(width: _kPad24),
           ],
           title: Text('Feed', style: theme.textTheme.titleMedium),

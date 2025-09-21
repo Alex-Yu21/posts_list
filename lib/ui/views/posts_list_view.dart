@@ -15,16 +15,13 @@ class PostsListView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final postsAsync = ref.watch(postsListProvider);
-    final theme = Theme.of(context);
 
     return AppScaffold(
       title: 'Feed',
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: _kPad12),
-            child: SearchField(),
-          ),
+          SizedBox(height: _kPad12),
+          SearchField(),
           Expanded(
             child: postsAsync.when(
               loading: () => const Center(child: CircularProgressIndicator()),
@@ -50,9 +47,7 @@ class PostsListView extends ConsumerWidget {
                         itemBuilder: (_, i) {
                           final p = posts[i];
                           return Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: _kPad12,
-                            ),
+                            padding: const EdgeInsets.only(top: _kPad24),
                             child: PostCard(
                               post: p,
                               onTap: () => Navigator.push<void>(

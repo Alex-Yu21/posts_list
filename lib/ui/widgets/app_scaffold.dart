@@ -12,20 +12,18 @@ class AppScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          actions: [
-            ThemeSwitch(),
-            SizedBox(width: _kPad24),
-          ],
-          title: Text(title, style: theme.textTheme.titleMedium),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: _kPad24),
-          child: child,
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        actions: [
+          ThemeSwitch(),
+          SizedBox(width: _kPad24),
+        ],
+        title: Text(title, style: theme.textTheme.titleMedium),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: _kPad24),
+        child: child,
       ),
     );
   }

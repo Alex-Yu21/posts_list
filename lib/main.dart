@@ -45,8 +45,23 @@ class App extends ConsumerWidget {
         colorScheme: lightScheme,
         fontFamily: 'Copse',
         textTheme: override(ThemeData.light().textTheme),
+        appBarTheme: AppBarTheme(
+          surfaceTintColor: Colors.transparent,
+          scrolledUnderElevation: 0,
+          elevation: 0,
+          backgroundColor: Theme.of(context).colorScheme.surface,
+
+          centerTitle: true,
+        ),
       ),
       darkTheme: ThemeData(
+        appBarTheme: AppBarTheme(
+          surfaceTintColor: Colors.transparent,
+          scrolledUnderElevation: 0,
+          elevation: 0,
+          backgroundColor: Theme.of(context).colorScheme.onSurface,
+          centerTitle: true,
+        ),
         useMaterial3: true,
         colorScheme: darkScheme,
         fontFamily: 'Copse',

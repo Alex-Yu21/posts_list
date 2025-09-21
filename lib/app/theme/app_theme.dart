@@ -32,6 +32,12 @@ final class AppTheme {
         backgroundColor: scheme.surface,
         centerTitle: true,
       ),
+      pageTransitionsTheme: const PageTransitionsTheme(
+        builders: {
+          TargetPlatform.iOS: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+        },
+      ),
     );
   }
 
@@ -51,6 +57,12 @@ final class AppTheme {
         elevation: 0,
         backgroundColor: scheme.surface,
         centerTitle: true,
+      ),
+      pageTransitionsTheme: const PageTransitionsTheme(
+        builders: {
+          TargetPlatform.iOS: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+        },
       ),
     );
   }

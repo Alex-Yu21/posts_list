@@ -15,46 +15,49 @@ class PostCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Material(
-      color: theme.colorScheme.secondaryContainer,
-      elevation: 1,
-      borderRadius: BorderRadius.circular(_radius),
-      child: InkWell(
+    return Hero(
+      tag: post.id,
+      child: Material(
+        color: theme.colorScheme.secondaryContainer,
+        elevation: 1,
         borderRadius: BorderRadius.circular(_radius),
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.all(_kPad12),
-          child: SizedBox(
-            height: _cardHight,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        post.title,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: theme.textTheme.titleMedium?.copyWith(
-                          color: theme.colorScheme.onSecondaryContainer,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(_radius),
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.all(_kPad12),
+            child: SizedBox(
+              height: _cardHight,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          post.title,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: theme.textTheme.titleMedium?.copyWith(
+                            color: theme.colorScheme.onSecondaryContainer,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: _kPad12),
-                      Text(
-                        '${post.shortDescription}...',
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          color: theme.colorScheme.onSurfaceVariant,
+                        const SizedBox(height: _kPad12),
+                        Text(
+                          '${post.shortDescription}...',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            color: theme.colorScheme.onSurfaceVariant,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

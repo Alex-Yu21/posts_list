@@ -27,27 +27,29 @@ class PostDetailsView extends ConsumerWidget {
         ),
         data: (p) => Padding(
           padding: const EdgeInsets.symmetric(vertical: _kPad12),
-          // TODO: hero animation
-          child: Material(
-            color: theme.colorScheme.secondaryContainer,
-            elevation: 1,
-            borderRadius: BorderRadius.circular(_radius),
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(_kPad24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(p.title, style: theme.textTheme.titleLarge),
-                    Divider(
-                      thickness: 1,
-                      indent: _kPad24,
-                      endIndent: _kPad24,
-                      color: theme.colorScheme.secondary,
-                    ),
-                    const SizedBox(height: _kPad12),
-                    Text(p.fullDescription, style: theme.textTheme.bodyLarge),
-                  ],
+          child: Hero(
+            tag: p.id,
+            child: Material(
+              color: theme.colorScheme.secondaryContainer,
+              elevation: 1,
+              borderRadius: BorderRadius.circular(_radius),
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(_kPad24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(p.title, style: theme.textTheme.titleLarge),
+                      Divider(
+                        thickness: 1,
+                        indent: _kPad24,
+                        endIndent: _kPad24,
+                        color: theme.colorScheme.secondary,
+                      ),
+                      const SizedBox(height: _kPad12),
+                      Text(p.fullDescription, style: theme.textTheme.bodyLarge),
+                    ],
+                  ),
                 ),
               ),
             ),

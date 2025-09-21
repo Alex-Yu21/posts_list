@@ -62,7 +62,6 @@ class PostsListView extends ConsumerWidget {
                             padding: const EdgeInsets.symmetric(
                               vertical: _kPad12,
                             ),
-                            // TODO: hero animation
                             child: PostCard(
                               post: p,
                               onTap: () => Navigator.push<void>(

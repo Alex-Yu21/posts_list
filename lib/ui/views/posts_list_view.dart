@@ -4,6 +4,7 @@ import 'package:posts_list/ui/providers/posts_providers.dart';
 import 'package:posts_list/ui/views/post_details.dart';
 import 'package:posts_list/ui/widgets/app_scaffold.dart';
 import 'package:posts_list/ui/widgets/post_card.dart';
+import 'package:posts_list/ui/widgets/search_field.dart';
 
 class PostsListView extends ConsumerWidget {
   const PostsListView({super.key});
@@ -22,17 +23,7 @@ class PostsListView extends ConsumerWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(bottom: _kPad12),
-            child: TextField(
-              // TODO: separete wodjet + debaunce
-              decoration: InputDecoration(
-                hintText: 'Search by title',
-                hintStyle: theme.textTheme.bodyLarge,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(32),
-                ),
-              ),
-              onChanged: (v) => ref.read(queryProvider.notifier).state = v,
-            ),
+            child: SearchField(),
           ),
           Expanded(
             child: postsAsync.when(

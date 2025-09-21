@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:posts_list/ui/providers/posts_providers.dart';
+import 'package:posts_list/ui/widgets/app_scaffold.dart';
 
 class PostDetailsView extends ConsumerWidget {
   final int id;
@@ -14,12 +15,9 @@ class PostDetailsView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final asyncPost = ref.watch(postDetailProvider(id));
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Post #$id', style: theme.textTheme.titleMedium),
-        centerTitle: true,
-      ),
-      body: asyncPost.when(
+    return AppScaffold(
+      title: 'Post #$id',
+      child: asyncPost.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(
           child: FilledButton(
@@ -28,10 +26,7 @@ class PostDetailsView extends ConsumerWidget {
           ),
         ),
         data: (p) => Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: _kPad24,
-            vertical: _kPad12,
-          ),
+          padding: const EdgeInsets.symmetric(vertical: _kPad12),
           // TODO: hero animation
           child: Material(
             color: theme.colorScheme.secondaryContainer,
@@ -46,8 +41,8 @@ class PostDetailsView extends ConsumerWidget {
                     Text(p.title, style: theme.textTheme.titleLarge),
                     Divider(
                       thickness: 1,
-                      indent: 24,
-                      endIndent: 24,
+                      indent: _kPad24,
+                      endIndent: _kPad24,
                       color: theme.colorScheme.secondary,
                     ),
                     const SizedBox(height: _kPad12),

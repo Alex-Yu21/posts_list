@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:posts_list/app/theme/tokens.dart';
 import 'package:posts_list/domain/entities/post_entity.dart';
 
 class PostCard extends StatelessWidget {
@@ -6,10 +7,6 @@ class PostCard extends StatelessWidget {
 
   final Post post;
   final VoidCallback? onTap;
-
-  static const _radius = 16.0;
-  static const _cardHight = 116.0;
-  static const _kPad12 = 12.0;
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +17,14 @@ class PostCard extends StatelessWidget {
       child: Material(
         color: theme.colorScheme.secondaryContainer,
         elevation: 1,
-        borderRadius: BorderRadius.circular(_radius),
+        borderRadius: BorderRadius.circular(Tokens.r16),
         child: InkWell(
-          borderRadius: BorderRadius.circular(_radius),
+          borderRadius: BorderRadius.circular(Tokens.r16),
           onTap: onTap,
           child: Padding(
-            padding: const EdgeInsets.all(_kPad12),
+            padding: const EdgeInsets.all(Tokens.pad12),
             child: SizedBox(
-              height: _cardHight,
+              height: Tokens.card116,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -44,7 +41,7 @@ class PostCard extends StatelessWidget {
                             color: theme.colorScheme.onSecondaryContainer,
                           ),
                         ),
-                        const SizedBox(height: _kPad12),
+                        const SizedBox(height: Tokens.pad12),
                         Text(
                           '${post.shortDescription}...',
                           maxLines: 1,

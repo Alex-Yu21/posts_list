@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:posts_list/app/theme/tokens.dart';
 import 'package:posts_list/ui/providers/posts_providers.dart';
 
 class SearchField extends ConsumerStatefulWidget {
@@ -21,7 +22,6 @@ class SearchField extends ConsumerStatefulWidget {
 class _SearchFieldState extends ConsumerState<SearchField> {
   final _controller = TextEditingController();
   Timer? _timer;
-  final double _radius = 32.00;
 
   @override
   void dispose() {
@@ -49,7 +49,7 @@ class _SearchFieldState extends ConsumerState<SearchField> {
         hintText: widget.hint,
         hintStyle: theme.textTheme.bodyLarge,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(_radius),
+          borderRadius: BorderRadius.circular(Tokens.r32),
         ),
         suffixIcon: _controller.text.isEmpty
             ? const Icon(Icons.search)

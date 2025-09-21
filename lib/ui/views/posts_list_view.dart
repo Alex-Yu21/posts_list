@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:posts_list/app/theme/tokens.dart';
 import 'package:posts_list/ui/providers/posts_providers.dart';
 import 'package:posts_list/ui/views/post_details.dart';
 import 'package:posts_list/ui/widgets/app_scaffold.dart';
@@ -9,9 +10,6 @@ import 'package:posts_list/ui/widgets/search_field.dart';
 class PostsListView extends ConsumerWidget {
   const PostsListView({super.key});
 
-  static const _kPad24 = 24.0;
-  static const _kPad12 = 12.0;
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final postsAsync = ref.watch(postsListProvider);
@@ -20,8 +18,8 @@ class PostsListView extends ConsumerWidget {
       title: 'Feed',
       child: Column(
         children: [
-          SizedBox(height: _kPad12),
-          SearchField(),
+          const SizedBox(height: Tokens.pad12),
+          const SearchField(),
           Expanded(
             child: postsAsync.when(
               loading: () => const Center(child: CircularProgressIndicator()),
@@ -30,7 +28,7 @@ class PostsListView extends ConsumerWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text('Failed to load: $e'),
-                    const SizedBox(height: _kPad24),
+                    const SizedBox(height: Tokens.pad24),
                     FilledButton(
                       onPressed: () => ref.refresh(postsListProvider),
                       child: const Text('Retry'),
@@ -47,7 +45,7 @@ class PostsListView extends ConsumerWidget {
                         itemBuilder: (_, i) {
                           final p = posts[i];
                           return Padding(
-                            padding: const EdgeInsets.only(top: _kPad24),
+                            padding: const EdgeInsets.only(top: Tokens.pad24),
                             child: PostCard(
                               post: p,
                               onTap: () => Navigator.push<void>(
